@@ -13,6 +13,7 @@ class Header extends React.Component {
           </li>
           <li>Newest: {this.props.recentPost.title}</li>
           <li>Random</li>
+          <li>List</li>
           <li>
             <button>Log in</button>
           </li>
