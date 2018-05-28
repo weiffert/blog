@@ -10,9 +10,9 @@
 
 .Post h1 {
   font-family: 'Monoton', arial;
+  flex-grow: 1;
 }
 
 .Post .title p {
   display: inline;
-  margin: 2rem;
 }
