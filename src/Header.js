@@ -5,7 +5,7 @@ import "./Header.css";
 class Header extends React.Component {
   render() {
     return (
-      <div className="Header flex">
+      <div className="Header">
         <h1 className="title">
           blog.
         </h1>

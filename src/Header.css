@@ -1,16 +1,15 @@
-.Header * {
-  font-family: 'Comfortaa', arial;
-}
-
 .Header {
+  width: 100vw;
   display: flex;
   align-items: center;
   background-color: bisque;
   border-bottom: 1rem solid #ccc;
+  flex-wrap: wrap;
 }
 
 .Header h1 {
   font-family: 'Monoton', arial;
+  flex-grow: 1;
   margin: 2rem;
 }
 
