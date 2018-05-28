@@ -1,7 +1,7 @@
 .Header {
   width: 100vw;
   background-color: bisque;
-  border-bottom: 1rem solid #ccc;
+  /* border-bottom: 1rem solid #ccc; */
 }
 
 .Header .title {
@@ -10,7 +10,7 @@
 }
 
 .Header .title h1 {
-  font-family: 'Monoton', arial;
+  font-family: 'Lobster', arial;
   flex-grow: 1;
   margin: 2rem;
 }
@@ -22,21 +22,21 @@
 
 .Header .button-group {
   margin: 0;
+  backgorund-color: #ccc;
 }
 
 .Header button.button {
   margin: 0;
-  /* width: 4rem; */
   height: 4rem;
-  transition: background-color 0.25s ease-out, color 0.25s ease-out, width 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-.Header button:hover {
-  width: 7rem;
+  background-color: #ccc;
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  transition: background-color 0.30s ease-out, color 0.25s ease-out, width 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .Header button i,
 .Header button svg {
+  color: black;
   transition: display 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
