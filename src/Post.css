@@ -1,0 +1,21 @@
+.Post * {
+  font-family: 'Comfortaa', arial;
+}
+
+.Post {
+  padding: 2rem;
+}
+
+.Post .title {
+  display: flex;
+  align-items: center;
+}
+
+.Post h1 {
+  font-family: 'Monoton', arial;
+}
+
+.Post .title p {
+  display: inline;
+  margin: 2rem;
+}
