@@ -7,10 +7,6 @@
   flex-grow: 1;
 }
 
-.Post .title p {
-  /* display: inline; */
-}
-
 .Post .title .authorship {
   margin: 1rem;
 }
