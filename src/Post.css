@@ -1,13 +1,10 @@
-.Post * {
-  font-family: 'Comfortaa', arial;
-}
-
 .Post {
   padding: 2rem;
 }
 
 .Post .title {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 
