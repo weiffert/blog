@@ -1,8 +1,19 @@
 import React from "react";
+import Markdown from "commonmark";
 
 import "./Post.css";
 
 class Post extends React.Component {
+  reader = new Markdown.Parser();
+  writer = new Markdown.HtmlRenderer();
+
+  renderMarkdown() {
+    let post = this.reader.parse(this.props.post.body);
+    post = this.writer.render(post);
+
+    return <div className="post" dangerouslySetInnerHTML={{__html:post}} />;
+  }
+
   render() {
     return (
       <div className="Post">
@@ -13,7 +24,7 @@ class Post extends React.Component {
             <p>{this.props.post.date}</p>
           </div>
         </div>
-        <p className="post">{this.props.post.body}</p>
+        {this.renderMarkdown()}
       </div>
     );
   }
