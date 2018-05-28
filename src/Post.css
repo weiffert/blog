@@ -2,14 +2,8 @@
   padding: 2rem;
 }
 
-.Post .title {
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* align-items: center; */
-}
-
 .Post .title h1 {
-  font-family: 'Monoton', arial;
+  font-family: 'Lobster', arial;
   flex-grow: 1;
 }
 
@@ -26,7 +20,6 @@
 }
 
 .Post .post {
-  margin: 1rem;
-  border-top: 1rem solid #ccc;
-  padding: 2rem;
+  border-top: 0.25rem solid #ccc;
+  padding: 1rem;
 }
