@@ -1,21 +1,3 @@
 .List {
   padding: 2rem;
 }
-
-.List .title h1 {
-  font-family: 'Lobster', arial;
-  flex-grow: 1;
-}
-
-.List .title .authorship {
-  margin: 1rem;
-}
-
-.List .title .authorship p:last-child {
-  color: #666;
-}
-
-.List .post {
-  border-top: 0.25rem solid #ccc;
-  padding: 1rem;
-}
