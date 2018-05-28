@@ -1,0 +1,54 @@
+.Header * {
+  font-family: 'Comfortaa', arial;
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+  background-color: bisque;
+  border-bottom: 1rem solid #ccc;
+}
+
+.Header h1 {
+  font-family: 'Monoton', arial;
+  margin: 2rem;
+}
+
+.Header>p {
+  display: inline;
+  margin: 2rem;
+}
+
+.Header .button-group {
+  margin: 0;
+}
+
+.Header button.button {
+  margin: 0;
+  width: 4rem;
+  height: 4rem;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out, width 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.Header button:hover {
+  width: 7rem;
+}
+
+.Header button i,
+.Header button svg {
+  transition: display 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.Header button:hover i,
+.Header button:hover svg {
+  display: none;
+}
+
+.Header button p {
+  display: none;
+  transition: display 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.Header button:hover p {
+  display: initial;
+}
