@@ -6,13 +6,13 @@ class Header extends React.Component {
   render() {
     return (
       <div className="Header">
-        <h1 className="title">
-          blog.
-        </h1>
-        <p>
-          by <a>William Eiffert</a>
-        </p>
-        <div className="button-group">
+        <div className="title">
+          <h1>blog.</h1>
+          <p>
+            by <a>William Eiffert</a>
+          </p>
+        </div>
+        <div className="button-group expanded">
           <button className="button alert">
             <i className="far fa-clock" />
             <p>Newest</p>
