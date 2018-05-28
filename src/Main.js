@@ -29,7 +29,7 @@ Ut pulvinar convallis nisi, sit amet condimentum purus consectetur non. Aenean c
 
 Pellentesque interdum erat sit amet accumsan lobortis. Praesent feugiat augue sit amet varius ullamcorper. Phasellus at sodales erat, eu ultrices justo. Aliquam quis ex lorem. Mauris est dui, ullamcorper ut turpis vel, iaculis maximus ex. Nam non vehicula massa. Maecenas ac eleifend ligula, vitae sodales sapien. Nulla varius eleifend magna, id feugiat ante mollis aliquet. Duis sodales, libero in ultrices egestas, tellus nisi rhoncus libero, non pellentesque sem est a neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque ac dui id arcu condimentum cursus.`
         },
-{
+        {
           author: "William Eiffert",
           date: "May 28, 2018",
           title: "Test run 2.0",
@@ -80,14 +80,25 @@ Pellentesque interdum erat sit amet accumsan lobortis. Praesent feugiat augue si
     console.log("login");
   };
 
+  goToPost = post => {
+    this.setState({
+      currentPost: post
+    });
+  };
+
   render() {
     return (
       <div className="Main">
-        <Header newest={this.goToNewest} random={this.goToRandom} list={this.goToList} login={this.goToLogin} />
+        <Header
+          newest={this.goToNewest}
+          random={this.goToRandom}
+          list={this.goToList}
+          login={this.goToLogin}
+        />
         {this.state.currentPost ? (
           <Post post={this.state.currentPost} />
         ) : (
-          <List posts={this.state.posts} />
+          <List posts={this.state.posts} goToPost={this.goToPost} />
         )}
         <Footer />
       </div>

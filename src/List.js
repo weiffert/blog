@@ -8,7 +8,11 @@ class List extends React.Component {
   render() {
     return (
       <div className="List">
-        <ul>{this.props.posts.map(post => <ListElement post={post} />)}</ul>
+        <ul>
+          {this.props.posts.map(post => (
+            <ListElement post={post} goToPost={this.props.goToPost} />
+          ))}
+        </ul>
       </div>
     );
   }
