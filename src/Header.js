@@ -1,23 +1,35 @@
 import React from "react";
 
+import "./Header.css";
+
 class Header extends React.Component {
   render() {
     return (
-      <div className="Header">
-        <ul>
-          <li>
-            <h1>
-              Blog.
-              <p>by William Eiffert</p>
-            </h1>
-          </li>
-          <li>Newest: {this.props.newestPost.title}</li>
-          <li>Random</li>
-          <li>List</li>
-          <li>
-            <button>Log in</button>
-          </li>
-        </ul>
+      <div className="Header flex">
+        <h1 className="title">
+          blog.
+        </h1>
+        <p>
+          by <a>William Eiffert</a>
+        </p>
+        <div className="button-group">
+          <button className="button alert">
+            <i className="far fa-clock" />
+            <p>Newest</p>
+          </button>
+          <button className="button warning">
+            <i className="fas fa-random" />
+            <p>Random</p>
+          </button>
+          <button className="button primary">
+            <i className="fas fa-list" />
+            <p>List</p>
+          </button>
+          <button className="button success">
+            <i className="fas fa-sign-in-alt" />
+            <p>Login</p>
+          </button>
+        </div>
       </div>
     );
   }
