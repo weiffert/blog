@@ -10,7 +10,6 @@
 
 .ListElement h1 {
   font-family: 'Lobster', arial;
-  flex-grow: 1;
   transition: color 0.25s ease;
 }
 
