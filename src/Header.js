@@ -11,7 +11,7 @@ class Header extends React.Component {
               <p>by William Eiffert</p>
             </h1>
           </li>
-          <li>Newest: {this.props.recentPost.title}</li>
+          <li>Newest: {this.props.newestPost.title}</li>
           <li>Random</li>
           <li>List</li>
           <li>

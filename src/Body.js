@@ -5,13 +5,14 @@ import List from './List';
 
 class Body extends React.Component {
   state = {
-    reading: true
+    reading: true,
+    currentPost: this.props.posts[0],
   };
 
   render() {
     return (
       <div className="Body">
-        {this.state.reading ? <Post post={this.props.currentPost} /> : <List />}
+        {this.state.reading ? <Post post={this.state.currentPost} /> : <List />}
       </div>
     );
   }
