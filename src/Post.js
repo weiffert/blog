@@ -4,14 +4,13 @@ import Markdown from "commonmark";
 import "./Post.css";
 
 class Post extends React.Component {
-  reader = new Markdown.Parser();
-  writer = new Markdown.HtmlRenderer();
-
   renderMarkdown() {
-    let post = this.reader.parse(this.props.post.body);
-    post = this.writer.render(post);
+    const reader = new Markdown.Parser();
+    const writer = new Markdown.HtmlRenderer();
+    let post = reader.parse(this.props.post.body);
+    post = writer.render(post);
 
-    return <div className="post" dangerouslySetInnerHTML={{__html:post}} />;
+    return <div className="post" dangerouslySetInnerHTML={{ __html: post }} />;
   }
 
   render() {
