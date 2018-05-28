@@ -1,5 +1,10 @@
 .ListElement {
   list-style: none;
+  border-bottom: 0.25rem solid #ccc;
+}
+
+.ListElement:first-of-type {
+  border-top: 0.25rem solid #ccc;
 }
 
 .ListElement h1 {
@@ -9,8 +14,4 @@
 
 .ListElement p:last-child {
   color: #666;
-}
-
-.ListElement {
-  border-top: 0.25rem solid #ccc;
 }
