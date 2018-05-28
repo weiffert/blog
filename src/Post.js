@@ -7,12 +7,13 @@ class Post extends React.Component {
     return (
       <div className="Post">
         <div className="title">
-        <h1>{this.props.post.title}</h1>
-        <p>
-          by {this.props.post.author} on {this.props.post.date}
-        </p>
+          <h1>{this.props.post.title}</h1>
+          <div className="authorship">
+            <p>by {this.props.post.author}</p>
+            <p>{this.props.post.date}</p>
+          </div>
         </div>
-        <p>{this.props.post.body}</p>
+        <p className="post">{this.props.post.body}</p>
       </div>
     );
   }

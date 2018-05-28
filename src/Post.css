@@ -3,16 +3,30 @@
 }
 
 .Post .title {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* align-items: center; */
 }
 
-.Post h1 {
+.Post .title h1 {
   font-family: 'Monoton', arial;
   flex-grow: 1;
 }
 
 .Post .title p {
-  display: inline;
+  /* display: inline; */
+}
+
+.Post .title .authorship {
+  margin: 1rem;
+}
+
+.Post .title .authorship p:last-child {
+  color: #666;
+}
+
+.Post .post {
+  margin: 1rem;
+  border-top: 1rem solid #ccc;
+  padding: 2rem;
 }
