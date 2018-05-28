@@ -13,19 +13,19 @@ class Header extends React.Component {
           </p>
         </div>
         <div className="button-group expanded">
-          <button className="button alert">
+          <button className="button alert" onClick={this.props.newest}>
             <i className="far fa-clock" />
             <p>Newest</p>
           </button>
-          <button className="button warning">
+          <button className="button warning" onClick={this.props.random}>
             <i className="fas fa-random" />
             <p>Random</p>
           </button>
-          <button className="button primary">
+          <button className="button primary" onClick={this.props.list}>
             <i className="fas fa-list" />
             <p>List</p>
           </button>
-          <button className="button success">
+          <button className="button success" onClick={this.props.login}>
             <i className="fas fa-sign-in-alt" />
             <p>Login</p>
           </button>
