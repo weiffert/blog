@@ -1,26 +1,30 @@
-import React from 'react';
+import React from "react";
 
-import Header from './Header';
-import Body from './Body';
-import Footer from './Footer';
+import "./Main.css";
+
+import Header from "./Header";
+import Body from "./Body";
+import Footer from "./Footer";
 
 class Main extends React.Component {
   state = {
-    posts: [{
-      author: 'William Eiffert',
-      date: 'May 28, 2018',
-      title: 'Test run',
-      body: 'How \'bout it? adlfkasj sdlfjas sfjaslkfwej adxj kjdsjs jej wejw qjqwj sdksajds  fjdssdja kj kjjfaks ksjasjej nvmx eke jaekaek'
-    }
-    ],
-  }
+    posts: [
+      {
+        author: "William Eiffert",
+        date: "May 28, 2018",
+        title: "Test run",
+        body:
+          "How 'bout it? adlfkasj sdlfjas sfjaslkfwej adxj kjdsjs jej wejw qjqwj sdksajds  fjdssdja kj kjjfaks ksjasjej nvmx eke jaekaek"
+      }
+    ]
+  };
 
   makeBlankPost() {
     return {
-      author: '',
-      date: '',
-      title: '',
-      body: ''
+      author: "",
+      date: "",
+      title: "",
+      body: ""
     };
   }
 
