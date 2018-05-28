@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./List.css";
+
 import ListElement from "./ListElement";
 
 class List extends React.Component {

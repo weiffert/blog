@@ -1,0 +1,16 @@
+.ListElement {
+  list-style: none;
+}
+
+.ListElement h1 {
+  font-family: 'Lobster', arial;
+  flex-grow: 1;
+}
+
+.ListElement p:last-child {
+  color: #666;
+}
+
+.ListElement {
+  border-top: 0.25rem solid #ccc;
+}
