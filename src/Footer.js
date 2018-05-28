@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
+
+import "./Footer.css";
 
 class Footer extends React.Component {
   render() {
     return (
       <div className="Footer">
-        <ul>
-          <li>
-            Made by <a href="https://weiffert.com">William Eiffert</a>
-          </li>
-        </ul>
+        <p>
+          Made by <a href="https://weiffert.com">William Eiffert</a>
+        </p>
       </div>
     );
   }
