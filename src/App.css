@@ -5,4 +5,5 @@
 
 .App * {
   font-family: 'Comfortaa', arial;
+  box-sizing: border-box;
 }
