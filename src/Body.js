@@ -1,12 +1,14 @@
 import React from "react";
 
-import Post from './Post';
-import List from './List';
+import "./Body.css";
+
+import Post from "./Post";
+import List from "./List";
 
 class Body extends React.Component {
   state = {
     reading: true,
-    currentPost: this.props.posts[0],
+    currentPost: this.props.posts[0]
   };
 
   render() {
