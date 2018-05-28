@@ -2,15 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster");
 @import url("https://fonts.googleapis.com/css?family=Monoton");
 @import url("https://fonts.googleapis.com/css?family=Comfortaa");
-div.flex {
-  display: flex;
-  flex-wrap: wrap;
-}
 
-h1 p {
-  font-size: 1rem;
-}
-
-h1 {
-  flex-grow: 1;
+.App * {
+  font-family: 'Comfortaa', arial;
 }
