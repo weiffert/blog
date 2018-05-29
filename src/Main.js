@@ -1,9 +1,11 @@
 import React from "react";
 
+import base from './base';
+
 import "./Main.css";
 
 import Header from "./Header";
-import Body from "./Body";
+// import Body from "./Body";
 import Post from "./Post";
 import List from "./List";
 import Footer from "./Footer";
@@ -13,6 +15,7 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
+      username: "kill bill",
       currentPost: null,
       posts: [
         {
@@ -49,6 +52,14 @@ Pellentesque interdum erat sit amet accumsan lobortis. Praesent feugiat augue si
     };
   }
 
+  componentWillMount() {
+    base.syncState('posts', {
+      context: this,
+      state: "posts",
+      asArray: true
+    });
+  }
+
   makeBlankPost = () => {
     return {
       author: "",
@@ -63,7 +74,7 @@ Pellentesque interdum erat sit amet accumsan lobortis. Praesent feugiat augue si
   makeComment = (body) => {
     const date = new Date();
     return {
-      author: this.props.username ? this.props.username : "anonymous",
+      author: this.state.username ? this.state.username : "anonymous",
       date: `${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}`: date.getMinutes()} on ${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`,
       body
     }
