@@ -1,6 +1,7 @@
 import React from "react";
 
 import base from "./base";
+import { auth, googleProvider } from "./base";
 
 import "./Main.css";
 
@@ -27,7 +28,37 @@ class Main extends React.Component {
       state: "posts",
       asArray: true
     });
+
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        this.handleAuth(user.displayName);
+      } else {
+        this.signOut();
+      }
+    });
   }
+
+  signOut = () => {
+    auth.signOut();
+    this.setState({
+      username: "" 
+    });
+  };
+
+  handleAuth = (user) => {
+    this.setState({
+      username: user
+    });
+  };
+  
+  goToLogin = () => {
+    if (this.state.username) {
+      auth.signOut();
+    } else {
+      auth.signInWithPopup(googleProvider);
+    }
+  };
+
 
   makeBlankPost = () => {
     return {
@@ -69,19 +100,6 @@ class Main extends React.Component {
     this.setState({
       currentPost: null
     });
-  };
-
-  goToLogin = () => {
-    if(this.state.username) {
-    this.setState({
-      username: ""
-    });
-    } else {
-    this.setState({
-      username: "kill bill"
-    });
-    }
-    console.log("login");
   };
 
   goToPost = post => {
