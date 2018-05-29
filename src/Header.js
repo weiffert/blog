@@ -25,9 +25,19 @@ class Header extends React.Component {
             <i className="fas fa-list" />
             <p>List</p>
           </button>
+          {this.props.username ? (
+            <button className="button warning" onClick={this.props.compose}>
+              <i className="fas fa-plus" />
+              <span> </span>
+              <i className="fas fa-pencil-alt" />
+              <p>Compose</p>
+            </button>
+          ) : (
+            ""
+          )}
           <button className="button success" onClick={this.props.login}>
             <i className="fas fa-sign-in-alt" />
-            <p>Login</p>
+            {this.props.username ? <p>Log out</p> : <p>Log in</p>}
           </button>
         </div>
       </div>
