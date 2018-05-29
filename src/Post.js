@@ -3,6 +3,8 @@ import Markdown from "commonmark";
 
 import "./Post.css";
 
+import Comment from "./Comment";
+
 class Post extends React.Component {
   renderMarkdown() {
     const reader = new Markdown.Parser();
@@ -24,6 +26,22 @@ class Post extends React.Component {
           </div>
         </div>
         {this.renderMarkdown()}
+        <div className="comments">
+          <ul>
+            {this.props.post.comments.map(comment => <Comment comment={comment} />)}
+          </ul>
+          <form className="input-group" onSubmit={(event) => this.props.addComment(event)} >
+            <input
+              type="text"
+              name="comment"
+              placeholder="I think..."
+              required
+            />
+            <button className="button success input-group-button">
+              Comment
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
