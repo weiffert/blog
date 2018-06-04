@@ -9,26 +9,26 @@ class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPost: this.findPost(props.match.params.id) || this.blankPost()
+      currentPost: this.findPost(props.match.params.id) || this.noPost(),
     };
   }
-  
-  blankPost = () => {
+
+  noPost = () => {
     return {
-      author: "",
-      id: Date.now(),
-      date: Date.now(),
-      title: "",
-      body: "",
+      author: "Bad wifi",
+      id: 0,
+      date: "loading...",
+      title: "Sorry, slow connection",
+      body: `The Internet is the global system of interconnected computer networks that use the Internet protocol suite (TCP/IP) to link devices worldwide. It is a network of networks that consists of private, public, academic, business, and government networks of local to global scope, linked by a broad array of electronic, wireless, and optical networking technologies. The Internet carries a vast range of information resources and services, such as the inter-linked hypertext documents and applications of the World Wide Web (WWW), electronic mail, telephony, and file sharing.`,
       comments: [],
     };
   };
 
   findPost = id => {
-    return this.props.posts.find(post => post.id === id);
+    return this.props.posts.find(post => post.id === parseInt(id));
   };
 
-  componentDidUpdate = () => {
+  componentWillUpdate = () => {
     const newPost = this.findPost(this.props.match.params.id);
 
     if (newPost && newPost.id !== this.state.currentPost.id) {

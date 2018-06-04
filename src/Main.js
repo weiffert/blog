@@ -60,15 +60,19 @@ class Main extends React.Component {
     }
   };
 
-  blankPost = () => {
-    return {
-      author: "",
-      id: Date.now(),
-      date: Date.now(),
-      title: "",
-      body: "",
-      comments: [],
-    };
+  publish = post => {
+    const posts = [...this.state.posts];
+    if(post.id === 0) {
+      post.id = Date.now();
+      post.author = this.state.username;
+    
+      posts.unshift(post);
+    } else {
+      posts[posts.findIndex(p => p.id === post.id)] = post;
+    }
+    this.setState({
+      posts,
+    });
   };
 
   makeComment = body => {
@@ -134,7 +138,7 @@ class Main extends React.Component {
           <Route
             path="/compose"
             render={navProps => (
-              <Compose {...navProps} posts={this.state.posts} />
+              <Compose {...navProps} posts={this.state.posts} publish={this.publish} />
             )}
           />
         </Switch>
