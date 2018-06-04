@@ -62,10 +62,13 @@ class Main extends React.Component {
 
   publish = post => {
     const posts = [...this.state.posts];
-    if(post.id === 0) {
+
+    if (post.id === null) {
       post.id = Date.now();
+      const date = new Date();
+      post.date = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
       post.author = this.state.username;
-    
+
       posts.unshift(post);
     } else {
       posts[posts.findIndex(p => p.id === post.id)] = post;
@@ -138,7 +141,11 @@ class Main extends React.Component {
           <Route
             path="/compose"
             render={navProps => (
-              <Compose {...navProps} posts={this.state.posts} publish={this.publish} />
+              <Compose
+                {...navProps}
+                posts={this.state.posts}
+                publish={this.publish}
+              />
             )}
           />
         </Switch>

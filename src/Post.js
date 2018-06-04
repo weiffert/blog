@@ -17,10 +17,12 @@ class Post extends React.Component {
     return {
       author: "Bad WIFI",
       id: 0,
-      date: "loading...",
-      title: "Sorry, slow connection",
-      body: `The Internet is the global system of interconnected computer networks that use the Internet protocol suite (TCP/IP) to link devices worldwide. It is a network of networks that consists of private, public, academic, business, and government networks of local to global scope, linked by a broad array of electronic, wireless, and optical networking technologies. The Internet carries a vast range of information resources and services, such as the inter-linked hypertext documents and applications of the World Wide Web (WWW), electronic mail, telephony, and file sharing.`,
-      comments: [],
+      comments: {},
+      published: {
+        date: "loading...",
+        title: "Sorry, slow connection",
+        body: `The Internet is the global system of interconnected computer networks that use the Internet protocol suite (TCP/IP) to link devices worldwide. It is a network of networks that consists of private, public, academic, business, and government networks of local to global scope, linked by a broad array of electronic, wireless, and optical networking technologies. The Internet carries a vast range of information resources and services, such as the inter-linked hypertext documents and applications of the World Wide Web (WWW), electronic mail, telephony, and file sharing.`,
+      },
     };
   };
 
@@ -41,7 +43,7 @@ class Post extends React.Component {
   renderMarkdown() {
     const reader = new Markdown.Parser();
     const writer = new Markdown.HtmlRenderer();
-    let currentPost = reader.parse(this.state.currentPost.body);
+    let currentPost = reader.parse(this.state.currentPost.published.body);
     currentPost = writer.render(currentPost);
 
     return (
@@ -56,10 +58,10 @@ class Post extends React.Component {
     return (
       <div className="Post">
         <div className="title">
-          <h1>{this.state.currentPost.title}</h1>
+          <h1>{this.state.currentPost.published.title}</h1>
           <div className="authorship">
             <p>by {this.state.currentPost.author}</p>
-            <p>{this.state.currentPost.date}</p>
+            <p>{this.state.currentPost.published.date}</p>
           </div>
         </div>
         {this.renderMarkdown()}

@@ -12,23 +12,46 @@ class Compose extends React.Component {
 
   blankPost = () => {
     return {
-      author: "",
-      id: 0,
-      date: Date.now(),
-      title: "",
-      body: "",
-      comments: [],
+      author: null,
+      id: null,
+      comments: {},
+
+      working: {
+        date: Date.now(),
+        title: "",
+        body: "",
+      },
+      published: {
+        date: Date.now(),
+        title: null,
+        body: null,
+      },
     };
   };
 
   updateForm = event => {
     const post = { ...this.state.post };
 
-    post[event.target.name] = event.target.value;
+    post.working[event.target.name] = event.target.value;
 
     this.setState({
       post,
     });
+  };
+
+  revertToPublished = () => {
+    const post = { ...this.state.post };
+    post.working = { ...post.published };
+
+    this.setState({ post });
+  };
+
+  publish = () => {
+    const post = { ...this.state.post };
+    post.published = { ...post.working };
+
+    this.setState({ post });
+    this.props.publish(post);
   };
 
   render() {
@@ -37,13 +60,19 @@ class Compose extends React.Component {
         <form
           onSubmit={event => {
             event.preventDefault();
-            this.props.publish(this.state.post);
+            this.publish();
           }}
+          onReset={() => this.revertToPublished()}
           onChange={this.updateForm}
         >
-          <input name="title" value={this.state.post.title} />
-          <textarea name="body" value={this.state.post.body} />
-          <button className="button success">Publish</button>
+          <input name="title" value={this.state.post.working.title} />
+          <textarea name="body" value={this.state.post.working.body} />
+          <button className="button success" type="submit">
+            Publish
+          </button>
+          <button className="button danger" type="reset">
+            Revert to published version
+          </button>
         </form>
       </div>
     );

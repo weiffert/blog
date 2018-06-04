@@ -8,7 +8,16 @@ class List extends React.Component {
   render() {
     return (
       <div className="List">
-        <ul>{this.props.posts.map(post => <ListElement post={post} />)}</ul>
+        <ul>
+          {this.props.posts.map(
+            post =>
+              post.id != null ? (
+                <ListElement {...post.published} author={post.author} id={post.id} />
+              ) : (
+                ""
+              )
+          )}
+        </ul>
       </div>
     );
   }
