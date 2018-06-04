@@ -10,6 +10,7 @@ import Header from "./Header";
 import Post from "./Post";
 import List from "./List";
 import Footer from "./Footer";
+import Compose from "./Compose";
 
 class Main extends React.Component {
   constructor(props) {
@@ -97,10 +98,7 @@ class Main extends React.Component {
   render() {
     return (
       <div className="Main">
-        <Header
-          login={this.goToLogin}
-          username={this.state.username}
-        />
+        <Header login={this.goToLogin} username={this.state.username} />
         <Switch>
           <Route
             path="/posts/newest"
@@ -132,6 +130,12 @@ class Main extends React.Component {
           <Route
             path="/posts"
             render={navProps => <List posts={this.state.posts} {...navProps} />}
+          />
+          <Route
+            path="/compose"
+            render={navProps => (
+              <Compose {...navProps} posts={this.state.posts} />
+            )}
           />
         </Switch>
         <Footer />
