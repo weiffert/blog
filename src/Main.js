@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
 
 import base from "./base";
 import { auth, googleProvider } from "./base";
@@ -6,7 +7,6 @@ import { auth, googleProvider } from "./base";
 import "./Main.css";
 
 import Header from "./Header";
-// import Body from "./Body";
 import Post from "./Post";
 import List from "./List";
 import Footer from "./Footer";
@@ -18,7 +18,7 @@ class Main extends React.Component {
     this.state = {
       username: "",
       currentPost: null,
-      posts: []
+      posts: [],
     };
   }
 
@@ -26,11 +26,11 @@ class Main extends React.Component {
     base.syncState("posts", {
       context: this,
       state: "posts",
-      asArray: true
+      asArray: true,
     });
 
     auth.onAuthStateChanged(user => {
-      if(user) {
+      if (user) {
         this.handleAuth(user.displayName);
       } else {
         this.signOut();
@@ -41,16 +41,16 @@ class Main extends React.Component {
   signOut = () => {
     auth.signOut();
     this.setState({
-      username: "" 
+      username: "",
     });
   };
 
-  handleAuth = (user) => {
+  handleAuth = user => {
     this.setState({
-      username: user
+      username: user,
     });
   };
-  
+
   goToLogin = () => {
     if (this.state.username) {
       auth.signOut();
@@ -59,7 +59,6 @@ class Main extends React.Component {
     }
   };
 
-
   makeBlankPost = () => {
     return {
       author: "",
@@ -67,7 +66,7 @@ class Main extends React.Component {
       date: Date.now(),
       title: "",
       body: "",
-      comments: []
+      comments: [],
     };
   };
 
@@ -78,13 +77,13 @@ class Main extends React.Component {
       date: `${date.getHours()}:${
         date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
       } on ${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`,
-      body
+      body,
     };
   };
 
   goToNewest = () => {
     this.setState({
-      currentPost: this.state.posts[0]
+      currentPost: this.state.posts[0],
     });
   };
 
@@ -92,19 +91,19 @@ class Main extends React.Component {
     this.setState({
       currentPost: this.state.posts[
         Math.floor(Math.random() * this.state.posts.length)
-      ]
+      ],
     });
   };
 
   goToList = () => {
     this.setState({
-      currentPost: null
+      currentPost: null,
     });
   };
 
   goToPost = post => {
     this.setState({
-      currentPost: post
+      currentPost: post,
     });
   };
 
@@ -119,7 +118,7 @@ class Main extends React.Component {
     currentPost.comments.push(comment);
 
     this.setState({
-      currentPost
+      currentPost,
     });
 
     event.target.reset();
@@ -136,16 +135,25 @@ class Main extends React.Component {
           compose={this.goToCompose}
           username={this.state.username}
         />
-        {this.state.currentPost ? (
-          <Post
-            post={this.state.currentPost}
-            addComment={this.addComment}
-            username={this.state.username}
+        <Switch>
+          <Route
+            path="/posts"
+            render={() => (
+              <Post
+                post={this.state.currentPost}
+                addComment={this.addComment}
+                username={this.state.username}
+              />
+            )}
           />
-        ) : (
-          <List posts={this.state.posts} goToPost={this.goToPost} />
-        )}
-        <Footer />
+          <Route
+            path="/list"
+            render={() => (
+              <List posts={this.state.posts} goToPost={this.goToPost} />
+            )}
+          />
+        </Switch>
+        <Footer/>
       </div>
     );
   }
