@@ -15,7 +15,7 @@ class Post extends React.Component {
 
   noPost = () => {
     return {
-      author: "Bad wifi",
+      author: "Bad WIFI",
       id: 0,
       date: "loading...",
       title: "Sorry, slow connection",
