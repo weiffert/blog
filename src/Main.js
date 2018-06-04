@@ -59,7 +59,7 @@ class Main extends React.Component {
     }
   };
 
-  makeBlankPost = () => {
+  blankPost = () => {
     return {
       author: "",
       id: Date.now(),
@@ -95,18 +95,6 @@ class Main extends React.Component {
     });
   };
 
-  goToList = () => {
-    this.setState({
-      currentPost: null,
-    });
-  };
-
-  goToPost = post => {
-    this.setState({
-      currentPost: post,
-    });
-  };
-
   goToCompose = () => {
     console.log("compose");
   };
@@ -137,23 +125,22 @@ class Main extends React.Component {
         />
         <Switch>
           <Route
-            path="/posts"
-            render={() => (
+            path="/posts/:id"
+            render={navProps => (
               <Post
-                post={this.state.currentPost}
+                posts={this.state.posts}
                 addComment={this.addComment}
                 username={this.state.username}
+                {...navProps}
               />
             )}
           />
           <Route
-            path="/list"
-            render={() => (
-              <List posts={this.state.posts} goToPost={this.goToPost} />
-            )}
+            path="/posts"
+            render={navProps => <List posts={this.state.posts} {...navProps} />}
           />
         </Switch>
-        <Footer/>
+        <Footer />
       </div>
     );
   }

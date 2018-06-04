@@ -1,19 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./ListElement.css";
 
 class ListElement extends React.Component {
   render() {
     return (
-      <li
-        className="ListElement"
-        key={this.props.post.date}
-        onClick={() => this.props.goToPost(this.props.post)}
-      >
-        <h1>{this.props.post.title}</h1>
-        <p>{this.props.post.author}</p>
-        <p>{this.props.post.date}</p>
-      </li>
+      <Link to={`/posts/${this.props.post.id}`}>
+        <li className="ListElement" key={this.props.post.id}>
+          <h1>{this.props.post.title}</h1>
+          <p>{this.props.post.author}</p>
+          <p>{this.props.post.date}</p>
+        </li>
+      </Link>
     );
   }
 }
