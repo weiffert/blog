@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 
 import base from "./base";
 import { auth, googleProvider } from "./base";
@@ -81,24 +81,6 @@ class Main extends React.Component {
     };
   };
 
-  goToNewest = () => {
-    this.setState({
-      currentPost: this.state.posts[0],
-    });
-  };
-
-  goToRandom = () => {
-    this.setState({
-      currentPost: this.state.posts[
-        Math.floor(Math.random() * this.state.posts.length)
-      ],
-    });
-  };
-
-  goToCompose = () => {
-    console.log("compose");
-  };
-
   addComment = event => {
     event.preventDefault();
     const currentPost = { ...this.state.currentPost };
@@ -116,14 +98,26 @@ class Main extends React.Component {
     return (
       <div className="Main">
         <Header
-          newest={this.goToNewest}
-          random={this.goToRandom}
-          list={this.goToList}
           login={this.goToLogin}
-          compose={this.goToCompose}
           username={this.state.username}
         />
         <Switch>
+          <Route
+            path="/posts/newest"
+            render={() => <Redirect to={`/posts/${this.state.posts[0].id}`} />}
+          />
+          <Route
+            path="/posts/random"
+            render={() => (
+              <Redirect
+                to={`/posts/${
+                  this.state.posts[
+                    Math.floor(Math.random() * this.state.posts.length)
+                  ].id
+                }`}
+              />
+            )}
+          />
           <Route
             path="/posts/:id"
             render={navProps => (
