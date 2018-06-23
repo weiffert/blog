@@ -82,7 +82,7 @@ class Main extends React.Component {
     posts[posts.findIndex(p => p.id === post.id)] = post;
 
     this.setState({ posts });
-  }
+  };
 
   makeComment = body => {
     const date = new Date();
@@ -142,7 +142,9 @@ class Main extends React.Component {
           />
           <Route
             path="/posts"
-            render={navProps => <List posts={this.state.posts} {...navProps} />}
+            render={navProps => (
+              <List posts={this.state.posts} {...navProps} showDrafts={false} />
+            )}
           />
           <Route
             path="/compose/:id"
@@ -153,6 +155,12 @@ class Main extends React.Component {
                 update={this.updatePost}
                 publish={this.publish}
               />
+            )}
+          />
+          <Route
+            path="/compose"
+            render={navProps => (
+              <List posts={this.state.posts} {...navProps} showDrafts={true} />
             )}
           />
         </Switch>

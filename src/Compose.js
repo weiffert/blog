@@ -73,7 +73,10 @@ class Compose extends React.Component {
   render() {
     return (
       <div className="Compose">
-        <form onChange={this.updateForm}>
+        <form
+          onSubmit={event => event.preventDefault()}
+          onChange={this.updateForm}
+        >
           <input name="title" value={this.state.currentPost.working.title} />
           <textarea name="body" value={this.state.currentPost.working.body} />
           <button className="button danger" onClick={this.revertToPublished}>
