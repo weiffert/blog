@@ -22,7 +22,8 @@ class List extends React.Component {
             post =>
               post.id != null ? (
                 <ListElement
-                  {...post.published}
+                  working={post.working}
+                  published={post.published}
                   author={post.author}
                   id={post.id}
                   showDrafts={this.props.showDrafts}
