@@ -61,24 +61,28 @@ class Main extends React.Component {
   };
 
   publish = post => {
+    this.updatePost(post);
+
     const posts = [...this.state.posts];
+    const date = new Date();
+    post.published.date = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
 
-    if (post.id === null) {
-      post.id = Date.now();
-      const date = new Date();
-      post.date = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
-      post.author = this.state.username;
-
-      posts.unshift(post);
-    } else {
-      posts[posts.findIndex(p => p.id === post.id)] = post;
+    if (post.id !== null) {
+      const index = posts.findIndex(p => p.id === post.id);
+      posts.splice(index, 1);
     }
+    posts.unshift(post);
 
     this.setState({ posts });
   };
 
   updatePost = post => {
     const posts = [...this.state.posts];
+
+    const date = new Date();
+    post.working.date = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+    post.author = this.state.username;
+
     posts[posts.findIndex(p => p.id === post.id)] = post;
 
     this.setState({ posts });
