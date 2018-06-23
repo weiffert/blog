@@ -13,7 +13,7 @@ class Compose extends React.Component {
   blankPost = () => {
     return {
       author: null,
-      id: null,
+      id: Date.now(),
       comments: {},
 
       working: {
