@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import "./List.css";
 
@@ -9,10 +10,23 @@ class List extends React.Component {
     return (
       <div className="List">
         <ul>
+          {this.props.showDrafts ? (
+            <NavLink to="/compose/new">
+              <button className="button primary">Compose New</button>
+            </NavLink>
+          ) : (
+            ""
+          )}
+
           {this.props.posts.map(
             post =>
               post.id != null ? (
-                <ListElement {...post.published} author={post.author} id={post.id} />
+                <ListElement
+                  {...post.published}
+                  author={post.author}
+                  id={post.id}
+                  showDrafts={this.props.showDrafts}
+                />
               ) : (
                 ""
               )
