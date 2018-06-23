@@ -76,6 +76,17 @@ class Main extends React.Component {
     this.setState({ posts });
   };
 
+  unpublish = id => {
+    const posts = [...this.state.posts];
+
+    const index = posts.findIndex(p => p.id === id);
+
+    posts[index].published.title = "";
+    posts[index].published.body = "";
+
+    this.setState({ posts });
+  };
+
   updatePost = post => {
     const posts = [...this.state.posts];
 
@@ -158,13 +169,18 @@ class Main extends React.Component {
                 posts={this.state.posts}
                 update={this.updatePost}
                 publish={this.publish}
+                unpublish={this.unpublish}
               />
             )}
           />
           <Route
             path="/compose"
             render={navProps => (
-              <List posts={this.state.posts} {...navProps} showDrafts={true} />
+              <List
+                posts={this.state.posts}
+                {...navProps}
+                showDrafts={true}
+              />
             )}
           />
         </Switch>

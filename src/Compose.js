@@ -22,9 +22,9 @@ class Compose extends React.Component {
         body: "",
       },
       published: {
-        date: Date.now(),
-        title: null,
-        body: null,
+        date: "",
+        title: "",
+        body: "",
       },
     };
   };
@@ -70,6 +70,15 @@ class Compose extends React.Component {
     this.props.publish(currentPost);
   };
 
+  unpublish = () => {
+    const currentPost = { ...this.state.currentPost };
+    currentPost.published.body = "";
+    currentPost.published.title = "";
+    currentPost.published.date = "";
+
+    this.save();
+  }
+
   render() {
     return (
       <div className="Compose">
@@ -79,14 +88,17 @@ class Compose extends React.Component {
         >
           <input name="title" value={this.state.currentPost.working.title} />
           <textarea name="body" value={this.state.currentPost.working.body} />
-          <button className="button danger" onClick={this.revertToPublished}>
-            Revert to published version
-          </button>
           <button className="button warning" onClick={this.save}>
             Save Changes
           </button>
-          <button className="button success" onClick={this.publish}>
+          <button className="button success" onClick={this.revertToPublished}>
+            Revert to published version
+          </button>
+          <button className="button primary" onClick={this.publish}>
             Publish
+          </button>
+          <button className="button alert" onClick={this.unpublish}>
+            Unpublish
           </button>
         </form>
       </div>
