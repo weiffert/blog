@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import Markdown from "commonmark";
 
 import "./Post.css";
@@ -58,7 +59,12 @@ class Post extends React.Component {
     return (
       <div className="Post">
         <div className="title">
+          <div className="row">
           <h1>{this.state.currentPost.published.title}</h1>
+          <NavLink to={`/compose/${this.state.currentPost.id}`}>
+            <button className="button danger">Edit</button>
+          </NavLink>
+          </div>
           <div className="authorship">
             <p>by {this.state.currentPost.author}</p>
             <p>{this.state.currentPost.published.date}</p>

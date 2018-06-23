@@ -6,7 +6,7 @@ class Compose extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: this.blankPost(),
+      currentPost: this.findPost(props.match.params.id) || this.blankPost(),
     };
   }
 
@@ -29,49 +29,61 @@ class Compose extends React.Component {
     };
   };
 
+  findPost = id => {
+    return this.props.posts.find(post => post.id === parseInt(id));
+  };
+
+  componentWillUpdate = () => {
+    const newPost = this.findPost(this.props.match.params.id);
+
+    if (newPost && newPost.id !== this.state.currentPost.id) {
+      this.setState({
+        currentPost: newPost,
+      });
+    }
+  };
+
   updateForm = event => {
-    const post = { ...this.state.post };
+    const currentPost = { ...this.state.currentPost };
+    currentPost.working[event.target.name] = event.target.value;
 
-    post.working[event.target.name] = event.target.value;
-
-    this.setState({
-      post,
-    });
+    this.setState({ currentPost });
   };
 
   revertToPublished = () => {
-    const post = { ...this.state.post };
-    post.working = { ...post.published };
+    const currentPost = { ...this.state.currentPost };
+    currentPost.working = { ...currentPost.published };
 
-    this.setState({ post });
+    this.setState({ currentPost });
+    this.save();
+  };
+
+  save = () => {
+    this.props.update(this.state.currentPost);
   };
 
   publish = () => {
-    const post = { ...this.state.post };
-    post.published = { ...post.working };
+    const currentPost = { ...this.state.currentPost };
+    currentPost.published = { ...currentPost.working };
 
-    this.setState({ post });
-    this.props.publish(post);
+    this.setState({ currentPost });
+    this.props.publish(currentPost);
   };
 
   render() {
     return (
       <div className="Compose">
-        <form
-          onSubmit={event => {
-            event.preventDefault();
-            this.publish();
-          }}
-          onReset={() => this.revertToPublished()}
-          onChange={this.updateForm}
-        >
-          <input name="title" value={this.state.post.working.title} />
-          <textarea name="body" value={this.state.post.working.body} />
-          <button className="button success" type="submit">
-            Publish
-          </button>
-          <button className="button danger" type="reset">
+        <form onChange={this.updateForm}>
+          <input name="title" value={this.state.currentPost.working.title} />
+          <textarea name="body" value={this.state.currentPost.working.body} />
+          <button className="button danger" onClick={this.revertToPublished}>
             Revert to published version
+          </button>
+          <button className="button warning" onClick={this.save}>
+            Save Changes
+          </button>
+          <button className="button success" onClick={this.publish}>
+            Publish
           </button>
         </form>
       </div>
